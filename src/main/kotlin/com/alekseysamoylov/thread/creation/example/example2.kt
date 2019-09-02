@@ -2,11 +2,6 @@ package com.alekseysamoylov.thread.creation.example
 
 
 
-
-
-
-
-
 fun main() {
     val thread = NewThread()
 

@@ -7,7 +7,7 @@ package com.alekseysamoylov.thread.creation.example
 
 
 
-fun main(args: Array<String>) {
+fun main() {
     val thread = Thread {
         throw RuntimeException("Thread was interrupted")
     }
