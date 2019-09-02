@@ -12,9 +12,9 @@ fun main() {
 
 class SharedClass(
 //    @Volatile
-    var x: Int = 0,
+    var x: Long = 0,
 //    @Volatile
-    var y: Int = 0
+    var y: Long = 0
 ) {
     fun increment() {
         x++
