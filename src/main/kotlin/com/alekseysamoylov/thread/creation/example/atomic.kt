@@ -3,6 +3,7 @@ package com.alekseysamoylov.thread.creation.example
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 import java.util.concurrent.atomic.AtomicReference
+import java.util.concurrent.locks.LockSupport
 
 
 fun main() {
@@ -51,6 +52,8 @@ class AtomicVersionControl(versionNode: VersionNode) {
             currentNode.nextNode = Optional.of(newVersion)
             if (currentVersionAtomicReference.compareAndSet(currentNode, newVersion)) {
                 break
+            } else {
+                LockSupport.parkNanos(1000)
             }
         }
     }
