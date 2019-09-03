@@ -2,19 +2,14 @@ package com.alekseysamoylov.thread.creation.example
 
 
 
-
-
-
-
-
 fun main() {
-    val thread = Thread {
+    val threadThrowsException = Thread {
         throw RuntimeException("Thread was interrupted")
     }
-    thread.name = "New Worker"
+    threadThrowsException.name = "New Worker"
 
-    thread.setUncaughtExceptionHandler { thread, exception ->
+    threadThrowsException.setUncaughtExceptionHandler { thread, exception ->
         println("Logger[error] thread: ${thread.name} exception ${exception.message}")
     }
-    thread.start()
+    threadThrowsException.start()
 }

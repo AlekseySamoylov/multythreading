@@ -5,9 +5,9 @@ import java.util.concurrent.ThreadLocalRandom
 
 fun main() {
     val metrics = Metrics()
-    val business1 = BusinessLogic(metrics)
-    val business2 = BusinessLogic(metrics)
-    val metricsPrinter = MetricsPrinter(metrics)
+    val business1 = BusinessTask(metrics)
+    val business2 = BusinessTask(metrics)
+    val metricsPrinter = MetricsLogger(metrics)
 
     business1.start()
     business2.start()
@@ -16,19 +16,18 @@ fun main() {
     Thread.sleep(10000)
 }
 
-class MetricsPrinter(private val metrics: Metrics) : Thread() {
+class MetricsLogger(private val metrics: Metrics) : Thread() {
     @Override
     override fun run() {
         while (true) {
             Thread.sleep(2000)
             println(metrics.getAverage())
-
         }
     }
 
 }
 
-class BusinessLogic(private val metrics: Metrics) : Thread() {
+class BusinessTask(private val metrics: Metrics) : Thread() {
     @Override
     override fun run() {
         while (true) {

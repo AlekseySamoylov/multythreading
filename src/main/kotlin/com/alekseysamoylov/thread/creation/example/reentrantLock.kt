@@ -22,6 +22,7 @@ class CriticalBusinessClass {
 
     private val lock: Lock = ReentrantLock(/*true*/)
 
+    //    @Synchronized
     fun proceedWithInterruption() {
         try {
             println("try to do some important stuff ${Thread.currentThread().name}")

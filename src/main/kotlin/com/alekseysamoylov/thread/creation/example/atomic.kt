@@ -14,8 +14,8 @@ fun main() {
 
     for (i in 1 .. 10) {
         val thread = Thread {
-            for (i in 1..1000) {
-                val newVersion = VersionNode(atomicVersionControl.getCurrentVersion().content + "+ i " +
+            for (_i in 1..1000) {
+                val newVersion = VersionNode(atomicVersionControl.getCurrentVersion().content + "+ $i " +
                         ThreadLocalRandom.current().nextInt(10))
                 atomicVersionControl.addNewVersion(newVersion)
             }
@@ -69,10 +69,10 @@ class VersionNode(var content: String = "") {
     var nextNode: Optional<VersionNode> = Optional.empty()
 
     fun getVersionCount(): Int {
-        if (previousNode.isPresent) {
-            return previousNode.get().getVersionCount() + 1
+        return if (previousNode.isPresent) {
+            previousNode.get().getVersionCount() + 1
         } else {
-            return 1
+            1
         }
     }
 }
